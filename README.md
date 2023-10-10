@@ -22,7 +22,7 @@
 |Sr no.| context |
 |1|Introduction|
 | :- | :- |
-||<p>1\.1. Purpose</p><p>1\.2. Scope</p>|
+||<p>1\.1. <a href="purpose">Purpose</a></p><p>1\.2. Scope</p>|
 |2|System Description|
 ||<p>2\.1. System Overview</p><p>2\.2. System Architecture</p><p>2\.3. Data Flow Diagram</p><p>2\.4. Technology Stack</p>|
 |3|Functional Requirements|
@@ -54,7 +54,7 @@
 
 ### **1. Introduction**
 
-**1.1 Purpose**
+**1.1 [Purpose](#purpose)**
 
 The purpose of this document is to outline the requirements for the development of the Wireless Inventory Number Management system. It focuses on defining both the functional and non-functional aspects necessary for successful system implementation.
 
