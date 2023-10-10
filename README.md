@@ -70,13 +70,13 @@ The system is designed to manage ICCID, MSISDN, and IMEI numbers in wireless net
 For clarity, here are some key definitions:
 
 - ICCID (Integrated Circuit Card Identifier): A unique identifier associated with SIM cards, vital for their identification and functionality.
-  *example*:- 8991000904443084459U (MMCC-IINN-NNNN-NNNN-NN-C(X) format where,
+  *example*:- *8991000904443084459U (MMCC-IINN-NNNN-NNNN-NN-C(X) format where,
 MM = Constant (ISO 7812 Major Industry Identifier)
 CC = Country Code
 II = Issuer Identifier
 N{12} = Account ID ("SIM number")
 C = Checksum calculated from the other 19 digits using the Luhn algorithm.
-x = An extra 20th digit is returned by the 'AT!ICCID?' command, but it is not officially part of the ICCID.)
+x = An extra 20th digit is returned by the 'AT!ICCID?' command, but it is not officially part of the ICCID.)*
 - MSISDN (Mobile Station International Subscriber Directory Number): A mobile phone number within the global cellular network, used to route calls and messages.
 - IMEI (International Mobile Equipment Identity): A globally unique identifier assigned to mobile devices, crucial for device identification and tracking.
 
