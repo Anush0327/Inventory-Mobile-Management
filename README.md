@@ -4,19 +4,6 @@
 
 (Software Requirements Specification)
 
-
-**9th-Oct-2023**
-
-
-**Submitted to: Aruvi**    
-
-
-'  ' **Submitted by: Anush Abbagowni**
-
-
-'  ' **Prodapt  University, Hyderabad**
-
-
 **Table of Contents**
 
 |Sr-no|context|
@@ -129,7 +116,7 @@ Authentication and authorization mechanisms will be implemented to ensure that u
 **Authentication:**
 
 - JWT-Based Authentication: The system will employ JWT-based authentication to verify the identity of users during login. Upon successful authentication, the system will issue a JWT token to the user.
-- User Credentials: Users will be required to provide valid credentials, typically a username and password, during login.
+- User Credentials: Users will be required to provide valid credentials, typically a email and password, during login.
 - Token Expiry: JWT tokens will have a predefined expiry time, after which they will need to be renewed or reacquired.
 
 **Authorization:**
@@ -215,7 +202,39 @@ To ensure the confidentiality of sensitive data transmitted between the frontend
 ### Q &A Part : 
 
 
+**Project Objective:**
 
+1. What is the main goal of the web project?
+2. What problem or need does it address?
+3. What are the expected outcomes or deliverables?
+
+**Target Audience:**
+Do we have user personas or profiles to consider?
+
+**Functionality and Features:**
+
+1. What specific features and functionality should the website have?
+2. Are there any interactive elements(both external or on server) or special requirements?
+
+**Content and Information:**
+
+1. What content and information should be included on the website?
+2. Is content provided, or should it be created?
+
+**Design and User Experience:**
+
+1. Are there any design preferences or brand guidelines to follow?
+2. How should the user experience be optimized for the target audience?
+
+**Hosting and Domain:**
+
+1. Have hosting and domain considerations been made?
+2. Should the website be hosted on a specific platform?
+
+**Security and Privacy:**
+
+1. What security measures need to be in place to protect user data?
+2. Are there privacy regulations to comply with?
 
 
 
