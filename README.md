@@ -1,4 +1,4 @@
-# Inventory-Mobile-Management
+# Inventory-Number-Management
 
 # Software Requirements Specification (SRS) Document
 
