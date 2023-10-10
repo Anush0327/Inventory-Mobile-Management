@@ -19,10 +19,10 @@
 
 **Table of Contents**
 
-|Sr no.| context |
-|1|Introduction|
+|Sr-no|context|
 | :- | :- |
-||<p>1\.1. <a href="purpose">Purpose</a></p><p>1\.2. Scope</p>|
+|1|Introduction|
+||<p>1\.1. Purpose</p><p>1\.2. Scope</p>|
 |2|System Description|
 ||<p>2\.1. System Overview</p><p>2\.2. System Architecture</p><p>2\.3. Data Flow Diagram</p><p>2\.4. Technology Stack</p>|
 |3|Functional Requirements|
@@ -54,7 +54,7 @@
 
 ### **1. Introduction**
 
-**1.1 [Purpose](#purpose)**
+**1.1 Purpose**
 
 The purpose of this document is to outline the requirements for the development of the Wireless Inventory Number Management system. It focuses on defining both the functional and non-functional aspects necessary for successful system implementation.
 
@@ -166,14 +166,14 @@ Cross-Browser Compatibility: The frontend will be designed to function seamlessl
 ### **6. Data Model**
 
 The data model will consist of key entities for ICCID, MSISDN, and IMEI, securely stored within the chosen database system.
-
-Need to add ER image from database
+and also User,Customer and other required entities to support the functionality.
 
 ### **7. API Specification**
 
 The system will define RESTful API endpoints with specifications covering:
 
 - Reserving Numbers: API endpoints will be provided for reserving ICCID, MSISDN, and IMEI numbers.
+- Reverting Changes: API endpoints will be provided for changing the ICCID number based on the registered network,IMEI numbers must be changed based on the user's handset and MSISDN should be changed based on new SIM purchase.
 - Association: APIs will enable the association of ICCID with corresponding MSISDN and IMEI.
 - Availability Checks: Endpoints for checking the availability of numbers will also be included.
 
