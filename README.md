@@ -19,7 +19,7 @@
 
 **Table of Contents**
 
-
+|Sr no.| context |
 |1|Introduction|
 | :- | :- |
 ||<p>1\.1. Purpose</p><p>1\.2. Scope</p>|
@@ -112,7 +112,7 @@ The system encompasses several essential functionalities, including:
 
 ### **4. Non-Functional Requirements**
 
-**4.1 Performanc**e
+**4.1 Performance**
 
 The system's performance expectations include:
 
