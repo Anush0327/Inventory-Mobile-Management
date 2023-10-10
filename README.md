@@ -1,23 +1,20 @@
-**CAPSTONE PROJECT**
+# **CAPSTONE PROJECT**
 
-**Wireless Inventory Number Management**
+## **Wireless Inventory Number Management**
 
 (Software Requirements Specification)
 
 
 **9th-Oct-2023**
-**
 
 
 **Submitted to: Aruvi**    
-**
 
 
-` `**Submitted by: Sandhya Shevatre**
+'  ' **Submitted by: Anush Abbagowni**
 
 
-`   `**Prodapt  University, Hyderabad**
-**
+'  ' **Prodapt  University, Hyderabad**
 
 
 **Table of Contents**
@@ -55,7 +52,7 @@
 
 
 
-**1. Introduction**
+### **1. Introduction**
 
 **1.1 Purpose**
 
@@ -70,17 +67,17 @@ The system is designed to manage ICCID, MSISDN, and IMEI numbers in wireless net
 For clarity, here are some key definitions:
 
 - ICCID (Integrated Circuit Card Identifier): A unique identifier associated with SIM cards, vital for their identification and functionality.
-  *example*:- *8991000904443084459U (MMCC-IINN-NNNN-NNNN-NN-C(X) format where,
-MM = Constant (ISO 7812 Major Industry Identifier)
-CC = Country Code
-II = Issuer Identifier
-N{12} = Account ID ("SIM number")
-C = Checksum calculated from the other 19 digits using the Luhn algorithm.
-x = An extra 20th digit is returned by the 'AT!ICCID?' command, but it is not officially part of the ICCID.)*
+  *example*:- 8991000904443084459U (MMCC-IINN-NNNN-NNNN-NN-C(X) format where,
+  -  MM = Constant (ISO 7812 Major Industry Identifier)
+  -  CC = Country Code
+  -  II = Issuer Identifier
+  - N{12} = Account ID ("SIM number")
+  - C = Checksum calculated from the other 19 digits using the Luhn algorithm.
+  - x = An extra 20th digit is returned by the 'AT!ICCID?' command, but it is not officially part of the ICCID.)
 - MSISDN (Mobile Station International Subscriber Directory Number): A mobile phone number within the global cellular network, used to route calls and messages.
 - IMEI (International Mobile Equipment Identity): A globally unique identifier assigned to mobile devices, crucial for device identification and tracking.
 
-**2. System Description**
+### **2. System Description**
 
 **2.1 System Overview**
 
@@ -103,7 +100,7 @@ The system's data flow begins with user input through the frontend. This data is
 - Frontend: React.js
 - Database: MySQL (MySQLdatabase technology)
 
-**3. Functional Requirements**
+### **3. Functional Requirements**
 
 **3.1 Use Cases**
 
@@ -113,7 +110,7 @@ The system encompasses several essential functionalities, including:
 - Allocation to Customers: When numbers are allocated to customers, the system will associate ICCID with the corresponding MSISDN and IMEI.
 - Tracking and Availability: The system diligently tracks reservation dates and monitors the availability of numbers, aiding users in making informed decisions regarding number allocation.
 
-**4. Non-Functional Requirements**
+### **4. Non-Functional Requirements**
 
 **4.1 Performanc**e
 
@@ -125,7 +122,7 @@ Responsiveness: The system should exhibit responsiveness, ensuring that actions 
 
 Security is of paramount importance in the Wireless Inventory Number Management system. It encompasses several measures to safeguard sensitive data and control access to the system effectively.
 
-***Authentication and Authorization***
+**Authentication and Authorization**
 
 Authentication and authorization mechanisms will be implemented to ensure that users have controlled access to the system. This is achieved through the use of JSON Web Tokens (JWT), which provide a secure and efficient means of user authentication and authorization.
 
@@ -160,19 +157,19 @@ The system will ensure compatibility as follows:
 
 Cross-Browser Compatibility: The frontend will be designed to function seamlessly across different web browsers, providing a consistent experience to all users.
 
-**5. User Interface Design**
+### **5. User Interface Design**
 
 - The user interface will prioritize simplicity and user-friendliness. It will include:
 - Simple Forms: The UI will incorporate straightforward forms for number reservation.
 - Intuitive Layout: The layout will be designed with user intuitiveness in mind, enhancing the tracking of reservations.
 
-**6. Data Model**
+### **6. Data Model**
 
 The data model will consist of key entities for ICCID, MSISDN, and IMEI, securely stored within the chosen database system.
 
 Need to add ER image from database
 
-**7. API Specification**
+### **7. API Specification**
 
 The system will define RESTful API endpoints with specifications covering:
 
@@ -180,7 +177,7 @@ The system will define RESTful API endpoints with specifications covering:
 - Association: APIs will enable the association of ICCID with corresponding MSISDN and IMEI.
 - Availability Checks: Endpoints for checking the availability of numbers will also be included.
 
-**8. Security**
+### **8. Security**
 
 Security measures will be implemented, including:
 
@@ -190,7 +187,7 @@ Authorization: Authorization mechanisms will control user access based on define
 
 Data Encryption: Sensitive data transmission will be encrypted to protect against unauthorized access.
 
-**9. Testing**
+### **9. Testing**
 
 A comprehensive testing strategy will be employed, encompassing the following:
 
@@ -198,14 +195,14 @@ A comprehensive testing strategy will be employed, encompassing the following:
 - Integration Testing: Verification of interactions between different system components.
 - User Acceptance Testing: Evaluation of the system's compliance with user requirements and expectations.
 
-**10. Deployment**
+### **10. Deployment**
 
 Deployment of the system will involve the following:
 
 - Deployment Architecture: The architecture for deploying the backend and frontend in a production environment will be determined.
 - Deployment Instructions: Detailed instructions will be provided to guide the deployment process, ensuring successful implementation.
 
-**Data Encryption**
+### **Data Encryption**
 
 To ensure the confidentiality of sensitive data transmitted between the frontend and backend components, the system will employ data encryption.
 
@@ -215,7 +212,7 @@ To ensure the confidentiality of sensitive data transmitted between the frontend
 
 
 
-Q &A Part : 
+### Q &A Part : 
 
 
 
