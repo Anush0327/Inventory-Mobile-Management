@@ -1,0 +1,45 @@
+/* CSS for a basic table */
+.record-table {
+    width: 100%;
+    overflow: auto;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #f9f9f9;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #ccc;
+  }
+  
+  button {
+    border: none;
+    padding: 8px 12px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button[class="active"] {
+    background-color: green;
+  }
+  
+  button[class="inactive"] {
+    background-color: red;
+  }
+  

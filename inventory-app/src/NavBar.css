@@ -1,0 +1,22 @@
+  .navbar {
+    background-color: #fc1e52; 
+  }
+
+  .navbar .nav-link {
+    color: #ffffff;
+  }
+  
+  .navbar .dropdown-menu {
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .dropdown-item {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .dropdown-divider {
+    border-color: #ff040475; 
+  }
+  
