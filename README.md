@@ -107,6 +107,7 @@ The system encompasses several essential functionalities, including:
 The system's performance expectations include:
 
 Responsiveness: The system should exhibit responsiveness, ensuring that actions such as number reservation are carried out with minimal latency.
+
 **4.2 User Interface**
 
 The user interface design will adhere to the following criteria:
