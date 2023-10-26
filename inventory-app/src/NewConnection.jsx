@@ -145,9 +145,6 @@ export default function NewConnection(props) {
   return (
     <Grid container spacing={2}>
       <Grid xs={16}>
-        <img src="logo512.png" alt="Emo" className="reference" style={{ height: "100%", width: "20%" }} />
-      </Grid>
-      <Grid xs={16}>
         <div className="prepaid-container">
           <form method="POST" className="login-form" onSubmit={onsubmit}>
             <h3>{props.connection.type} Reservation/NewConnection</h3>
@@ -241,7 +238,7 @@ export default function NewConnection(props) {
             </button>
           </form>
         </div>
-      </Grid>
+        </Grid>
     </Grid>
   );
 }

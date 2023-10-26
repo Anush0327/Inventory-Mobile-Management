@@ -67,13 +67,18 @@ export default function NavBar() {
         return () => {
             document.removeEventListener("click", handleClickOutside);
         };
-    }, [dropdownRefs.prepaid,dropdownRefs.postpaid,dropdownRefs.records]);
+    }, [dropdownRefs.prepaid, dropdownRefs.postpaid, dropdownRefs.records]);
 
     return (
         <BrowserRouter>
             <div className="container">
-            <nav className="navbar">
+                <nav className="navbar">
                     <ul className="nav-list">
+                        <li>
+                            <Link to="/" className="nav-link">
+                                <img src="logo.svg" alt="kuchbhi" />
+                            </Link>
+                        </li>
                         <li>
                             <div className="btn-group" ref={dropdownRefs.prepaid}>
                                 <Link
