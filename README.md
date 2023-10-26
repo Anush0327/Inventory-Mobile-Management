@@ -14,7 +14,7 @@ https://github.com/Anush0327/Inventory-Number-Management
 |1|Introduction|
 ||<p>1\.1. Purpose</p><p>1\.2. Scope</p>|
 |2|System Description|
-||<p>2\.1. System Overview</p><p>2\.2. System Architecture</p><p>2\.3. Data Flow Diagram</p><p>2\.4. Technology Stack</p>|
+||<p>2\.1. System Overview</p><p>2\.2. System Architecture</p><p>2\.3. ER Diagram</p><p>2\.4. Technology Stack</p>|
 |3|Functional Requirements|
 ||<p>3\.1. Use Case 1</p><p>3\.2. Use Case 2</p>|
 |4|Non-Functional Requirements|
@@ -77,7 +77,9 @@ The system follows a client-server architecture with a RESTful API, facilitating
 
 .
 
-**2.3 Data Flow**
+**2.3 ER Diagram**
+
+![ER diagram of the App](inventoryNumber.png)
 
 The system's data flow begins with user input through the frontend. This data is then processed in the backend, where it undergoes various operations. Subsequently, the processed results are relayed back to the frontend for display.
 
