@@ -1,76 +1,75 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import "./ChangeProvider.css";
+import "./ChangeProvider.scss";
 
-export default function ChangeProvider(props){
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [customer, setCustomer] = useState("");
-    const [provider, setProvider] = useState("");
-    const changephonenumberhandle = (event) => {
-      setPhoneNumber(event.target.value);
-    };
-    const changeproviderhandle = (event) => {
-      setProvider(event.target.value);
-    };
-    const changecustomerhandle = (event) => {
-      setCustomer(event.target.value);
-    };
-    const onsubmit = async (event) => {
-      event.preventDefault();
-      console.log(
-        JSON.stringify({
-          customerNumber: customer,
-          phoneNumber: phoneNumber,
+export default function ChangeProvider(props) {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [customer, setCustomer] = useState("");
+  const [provider, setProvider] = useState("");
+  const changephonenumberhandle = (event) => {
+    setPhoneNumber(event.target.value);
+  };
+  const changeproviderhandle = (event) => {
+    setProvider(event.target.value);
+  };
+  const changecustomerhandle = (event) => {
+    setCustomer(event.target.value);
+  };
+  const onsubmit = async (event) => {
+    event.preventDefault();
+    console.log(
+      JSON.stringify({
+        customerNumber: customer,
+        phoneNumber: phoneNumber,
+        provider: provider,
+        location: "",
+        connectionType: props.connection.type,
+      })
+    );
+    try {
+      const response = await fetch("http://localhost:8080/api/number/changeProvider", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customerName: customer,
+          reservingNumber: phoneNumber,
           provider: provider,
           location: "",
           connectionType: props.connection.type,
-        })
-      );
-      try {
-        const response = await fetch("http://localhost:8080/api/number/changeProvider", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            customerName: customer,
-            reservingNumber: phoneNumber,
-            provider: provider,
-            location: "",
-            connectionType:props.connection.type,
-          }),
-        });
-        if (response.ok) {
-            const data = await response.json();
-            if(data === true){
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data === true) {
           toast.success("Sim Ported successfully", {
             position: "top-center",
-            autoClose: 5000, 
+            autoClose: 5000,
           });
         }
-        else{
-            toast.error("Sim Porting Failed",{
-            position : "top-center",
-            autoClose : 5000,
-            });
+        else {
+          toast.error("Sim Porting Failed", {
+            position: "top-center",
+            autoClose: 5000,
+          });
         }
-          setTimeout(() => {
-            window.location.reload();
-          }, 5000);
-        } else {
-          console.error("Failed to fetch data.");
-        }
-      } catch (error) {
-        console.error("Error:", error);
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000);
+      } else {
+        console.error("Failed to fetch data.");
       }
-    };
-    return(
-        <>
-        <div className="provider-container">
-            
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  return (
+    <>
+      <div className="provider-container">
         <form method="POST" className="provider-form" onSubmit={onsubmit}>
-        <h3>Port Your Sim</h3>
-        <hr/>
+          <h3>Port Your Sim</h3>
+          <hr />
           <label htmlFor="customer" className="form-label">
             Customer Name
           </label>
@@ -134,7 +133,7 @@ export default function ChangeProvider(props){
             Submit
           </button>
         </form>
-        </div>
-        </>
-    );
+      </div>
+    </>
+  );
 }

@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import "./ReplaceSim.css"
+import "./ReplaceSim.scss"
 export default function ReplaceSim(props){
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [location, setLocation] = useState("");
     const [customer, setCustomer] = useState("");
     const [provider, setProvider] = useState("");
     const changephonenumberhandle = (event) => {
@@ -11,9 +10,6 @@ export default function ReplaceSim(props){
     };
     const changeproviderhandle = (event) => {
       setProvider(event.target.value);
-    };
-    const changelocationhandle = (event) => {
-      setLocation(event.target.value);
     };
     const changecustomerhandle = (event) => {
       setCustomer(event.target.value);
@@ -25,7 +21,6 @@ export default function ReplaceSim(props){
           customerNumber: customer,
           phoneNumber: phoneNumber,
           provider: provider,
-          location: location,
           connectionType: props.connection.type,
         })
       );
@@ -39,7 +34,6 @@ export default function ReplaceSim(props){
             customerName: customer,
             reservingNumber: phoneNumber,
             provider: provider,
-            location: location,
             connectionType:props.connection.type,
           }),
         });
@@ -136,16 +130,6 @@ export default function ReplaceSim(props){
             />
             Aircel
           </label>
-          <label htmlFor="location" className="form-label">
-            Location
-          </label>
-          <input
-            type="text"
-            value={location}
-            name="location"
-            onChange={changelocationhandle}
-            className="form-input"
-          />
           <button type="submit" className="button">
             Submit
           </button>

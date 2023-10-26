@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import './Records.css'; // Import the CSS file
+import './ReservationRecords.scss'; // Import the CSS file
+import Airtel from "./Airtel";
+import Jio from "./Jio";
+import VI from "./VI";
 
 export default function ReservationRecords() {
     const [sims, setSims] = useState([]);
@@ -47,7 +50,7 @@ export default function ReservationRecords() {
                         <tr key={sim.id}>
                             <td>{sim.id}</td>
                             <td>{sim.phoneNumber}</td>
-                            <td>{sim.provider}</td>
+                            <td>{sim.provider==="AIRTEL"? <Airtel/> :sim.provider==="JIO"?<Jio/>:<VI/>}</td>
                             <td>{formatDateTime(sim.reservationDateTime)}</td>
                             <td>{sim.connectionType}</td>
                         </tr>

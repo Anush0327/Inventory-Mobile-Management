@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import "./ImeiManager.css";
+import "./ImeiManager.scss";
 
 export default function ImeiManager(){
     const [ImeiNumber,setImeiNumber] = useState('');

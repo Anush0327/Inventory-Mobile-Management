@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import './Records.css'; // Import the CSS file
+import './InactiveRecords.scss'; // Import the CSS file
 
 export default function InactiveRecords() {
     const [sims, setSims] = useState([]);

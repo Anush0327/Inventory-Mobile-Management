@@ -48,12 +48,14 @@ public class InventoryService {
 
     private static final int DEFAULT_NUMBER_OF_DAYS_TO_RESERVE = 90;
 
-    //writing a method to store the reservation
+    // writing a method to store the reservation
     public boolean reserveTheNumber(ReservationDTO reservationDTO) {
-        Customer customer = getOrCreateCustomer(reservationDTO.getCustomerName());
+        Customer customer = getOrCreateCustomer(reservationDTO.getAadharUID(), reservationDTO.getCustomerName());
         List<Reservation> reservations = reservationRepository.findAll();
-        Optional<Reservation> exising = reservations.stream().filter(reservation -> reservation.getPhoneNumber().equals(reservationDTO.getReservingNumber())).findFirst();
-        if(exising.isPresent()){
+        Optional<Reservation> exising = reservations.stream()
+                .filter(reservation -> reservation.getPhoneNumber().equals(reservationDTO.getReservingNumber()))
+                .findFirst();
+        if (exising.isPresent()) {
             return false;
         }
         Reservation newReservation = new Reservation();
@@ -65,40 +67,42 @@ public class InventoryService {
         reservationRepository.save(newReservation);
         return true;
     }
+
     @Scheduled(fixedRate = 3600000)
     @Transactional
-    public void removeAllExpiredReservations(){
+    public void removeAllExpiredReservations() {
         List<Reservation> reservations = reservationRepository.findAll();
-        for(Reservation reservation : reservations){
-            if(reservation.getReservationDateTime().plusDays(DEFAULT_NUMBER_OF_DAYS_TO_RESERVE).isBefore(LocalDateTime.now())){
+        for (Reservation reservation : reservations) {
+            if (reservation.getReservationDateTime().plusDays(DEFAULT_NUMBER_OF_DAYS_TO_RESERVE)
+                    .isBefore(LocalDateTime.now())) {
                 reservationRepository.delete(reservation);
             }
         }
     }
 
-    public List<Reservation> getAllReservationsOf(String customerName){
-        Customer customer = customerRepository.findByName(customerName).orElse(null);
-        if(customer==null){
+    public List<Reservation> getAllReservationsOf(String aadharUID) {
+        Customer customer = customerRepository.findByAadharUID(aadharUID).orElse(null);
+        if (customer == null) {
             return Collections.emptyList();
-        }
-        else{
+        } else {
             return reservationRepository.findAllByCustomerId(customer.getId());
         }
     }
 
-    public List<Reservation> getAllReservations(){
+    public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();
     }
 
-    private Boolean alreadyReservedNumber(String number,String customerName){
+    private Boolean alreadyReservedNumber(String number, String customerName, String aadharUid) {
         List<Reservation> reservations = reservationRepository.findAll();
-        List<Reservation> customerReservations = reservationRepository.findAllByCustomerId(getOrCreateCustomer(customerName).getId());
-        for(Reservation reservation : customerReservations){
-            if(reservation.getPhoneNumber().equals(number))
+        List<Reservation> customerReservations = reservationRepository
+                .findAllByCustomerId(getOrCreateCustomer(aadharUid, customerName).getId());
+        for (Reservation reservation : customerReservations) {
+            if (reservation.getPhoneNumber().equals(number))
                 return false;
         }
-        for(Reservation reservation : reservations){
-            if(reservation.getPhoneNumber().equals(number)){
+        for (Reservation reservation : reservations) {
+            if (reservation.getPhoneNumber().equals(number)) {
                 return true;
             }
         }
@@ -106,25 +110,29 @@ public class InventoryService {
     }
 
     public boolean issueInitiation(ReservationDTO reservationDTO) {
-        Customer customer = getOrCreateCustomer(reservationDTO.getCustomerName());
+        Customer customer = getOrCreateCustomer(reservationDTO.getAadharUID(), reservationDTO.getCustomerName());
         MSISDN existingMsisdn = msisdnRepository.findByMsisdnNumber(reservationDTO.getReservingNumber()).orElse(null);
-        
-        if (existingMsisdn != null||alreadyReservedNumber(reservationDTO.getReservingNumber(),reservationDTO.getCustomerName())) {
+
+        if (existingMsisdn != null || alreadyReservedNumber(reservationDTO.getReservingNumber(),
+                reservationDTO.getCustomerName(), reservationDTO.getAadharUID())) {
             return false; // Return false if MSISDN already exists.
         }
-        
+
         SIM sim = createReservation(reservationDTO, customer);
         List<Reservation> reservations = reservationRepository.findAllByCustomerId(customer.getId());
-        Optional<Reservation> optReservation = reservations.stream().filter(reservation -> reservation.getPhoneNumber().equals(reservationDTO.getReservingNumber())).findFirst();
-        if(optReservation.isPresent()){
+        Optional<Reservation> optReservation = reservations.stream()
+                .filter(reservation -> reservation.getPhoneNumber().equals(reservationDTO.getReservingNumber()))
+                .findFirst();
+        if (optReservation.isPresent()) {
             reservationRepository.delete(optReservation.get());
         }
         return sim != null;
     }
 
-    private Customer getOrCreateCustomer(String customerName) {
-        return customerRepository.findByName(customerName).orElseGet(() -> {
+    private Customer getOrCreateCustomer(String aadharUid, String customerName) {
+        return customerRepository.findByAadharUID(aadharUid).orElseGet(() -> {
             Customer newCustomer = new Customer();
+            newCustomer.setAadharUID(aadharUid);
             newCustomer.setName(customerName);
             customerRepository.save(newCustomer);
             return newCustomer;
@@ -158,12 +166,11 @@ public class InventoryService {
     public Boolean activate() {
         LocalDateTime currentDateTime = LocalDateTime.now();
         List<SIM> simsToActivate = new ArrayList<>();
-
         for (Customer customer : customerRepository.findAll()) {
             if (customer.getSims() != null) {
                 for (SIM sim : customer.getSims()) {
-                    if(!sim.isActivated()){
-                    LocalDateTime issuedDateTime = sim.getIssuedDateTime();
+                    if (!sim.isActivated()) {
+                        LocalDateTime issuedDateTime = sim.getIssuedDateTime();
                         if (issuedDateTime.plusMinutes(1).isBefore(currentDateTime)) {
                             simsToActivate.add(sim);
                         }
@@ -187,7 +194,7 @@ public class InventoryService {
     }
 
     private void activateReservation(SIM sim) {
-        if(sim==null||sim.getIccid()==null||sim.getMsisdn()==null)
+        if (sim == null || sim.getIccid() == null || sim.getMsisdn() == null)
             return;
         sim.setActivated(true);
         iccidRepository.save(sim.getIccid());
@@ -195,32 +202,33 @@ public class InventoryService {
         System.out.println(sim.isActivated());
     }
 
-    public boolean imeiAlreadyExist(String imei){
+    public boolean imeiAlreadyExist(String imei) {
         List<Customer> customers = customerRepository.findAll();
-        for(Customer customer: customers){
-            for(SIM sim : customer.getSims()){
-                if(sim.getImei()==null){
+        for (Customer customer : customers) {
+            for (SIM sim : customer.getSims()) {
+                if (sim.getImei() == null) {
                     return false;
                 }
-                if(sim.getImei().getImeiNumber().equals(imei))
+                if (sim.getImei().getImeiNumber().equals(imei))
                     return true;
             }
         }
         return false;
     }
 
-    private boolean setFlagForIMEI(List<SIM> sims,String phoneNumber,String imeiNumber){
+    private boolean setFlagForIMEI(List<SIM> sims, String phoneNumber, String imeiNumber) {
 
-        var simToActivate = sims.stream().filter(sim -> sim.getMsisdn().getMsisdnNumber().equals(phoneNumber)).findFirst();
+        var simToActivate = sims.stream().filter(sim -> sim.getMsisdn().getMsisdnNumber().equals(phoneNumber))
+                .findFirst();
         if (simToActivate.isEmpty()) {
             return false;
         }
-        if(imeiAlreadyExist(imeiNumber))
+        if (imeiAlreadyExist(imeiNumber))
             return false;
         IMEI newImei = new IMEI();
-                    newImei.setImeiNumber(imeiNumber);
-                    simToActivate.get().setImei(newImei);
-                    imeiRepository.save(newImei);
+        newImei.setImeiNumber(imeiNumber);
+        simToActivate.get().setImei(newImei);
+        imeiRepository.save(newImei);
         return true;
     }
 
@@ -228,25 +236,26 @@ public class InventoryService {
     public Boolean setSIMInPhoneWithIMEI(String imeiNumber, String phoneNumber) {
         List<Customer> customers = customerRepository.findAll();
         Boolean flag = false;
-        customers.stream().forEach(customer -> setFlagForIMEI(customer.getSims(),phoneNumber,imeiNumber));
-        var changedCustomer = customers.stream().filter(customer -> setFlagForIMEI(customer.getSims(), phoneNumber, imeiNumber)).findFirst();
-        if(changedCustomer.isPresent()){
+        customers.stream().forEach(customer -> setFlagForIMEI(customer.getSims(), phoneNumber, imeiNumber));
+        var changedCustomer = customers.stream()
+                .filter(customer -> setFlagForIMEI(customer.getSims(), phoneNumber, imeiNumber)).findFirst();
+        if (changedCustomer.isPresent()) {
             flag = true;
         }
         // for (Customer customer : customers) {
-        //     for (SIM sim : customer.getSims()) {
-        //         if(imeiAlreadyExist(imeiNumber)){
-        //             return false;
-        //         }
-        //         if (sim.getMsisdn().getMsisdnNumber().equals(phoneNumber)) {
-        //             IMEI newImei = new IMEI();
-        //             newImei.setImeiNumber(imeiNumber);
-        //             sim.setImei(newImei);
-        //             imeiRepository.save(newImei);
-        //             flag = true;
-        //         }
-        //     }
-        //     customerRepository.save(customer);
+        // for (SIM sim : customer.getSims()) {
+        // if(imeiAlreadyExist(imeiNumber)){
+        // return false;
+        // }
+        // if (sim.getMsisdn().getMsisdnNumber().equals(phoneNumber)) {
+        // IMEI newImei = new IMEI();
+        // newImei.setImeiNumber(imeiNumber);
+        // sim.setImei(newImei);
+        // imeiRepository.save(newImei);
+        // flag = true;
+        // }
+        // }
+        // customerRepository.save(customer);
         // }
         return flag;
     }
@@ -255,8 +264,8 @@ public class InventoryService {
         List<SIM> allSims = new ArrayList<>();
         List<Customer> customers = customerRepository.findAll();
         for (Customer customer : customers) {
-            for(SIM sim :customer.getSims()){
-                if(sim.getSimType().equals("prepaid"))
+            for (SIM sim : customer.getSims()) {
+                if (sim.getSimType().equals("prepaid"))
                     allSims.add(sim);
             }
         }
@@ -264,13 +273,14 @@ public class InventoryService {
     }
 
     public Boolean changeProvider(ReservationDTO reservationDTO) {
-        Customer customer = getOrCreateCustomer(reservationDTO.getCustomerName());
+        Customer customer = getOrCreateCustomer(reservationDTO.getAadharUID(), reservationDTO.getCustomerName());
 
-        Boolean status = changeProviderTo(reservationDTO.getReservingNumber(), reservationDTO.getProvider(), customer,reservationDTO.getConnectionType());
+        Boolean status = changeProviderTo(reservationDTO.getReservingNumber(), reservationDTO.getProvider(), customer,
+                reservationDTO.getConnectionType());
         return status;
     }
 
-    public Boolean changeProviderTo(String msisdn, String provider, Customer customer,String connectionType) {
+    public Boolean changeProviderTo(String msisdn, String provider, Customer customer, String connectionType) {
         Boolean flag = false;
         for (SIM sim : customer.getSims()) {
             if (sim.getMsisdn().getMsisdnNumber().equals(msisdn)) {
@@ -297,8 +307,8 @@ public class InventoryService {
         List<SIM> allSims = new ArrayList<>();
         List<Customer> customers = customerRepository.findAll();
         for (Customer customer : customers) {
-            for(SIM sim :customer.getSims()){
-                if(sim.getSimType().equals("postpaid"))
+            for (SIM sim : customer.getSims()) {
+                if (sim.getSimType().equals("postpaid"))
                     allSims.add(sim);
             }
         }
@@ -307,12 +317,12 @@ public class InventoryService {
 
     public List<SimDTO> convertToDTO(List<SIM> sims) {
         List<SimDTO> simDTOs = new ArrayList<>();
-        for(SIM sim :sims){
+        for (SIM sim : sims) {
             SimDTO simDTO = new SimDTO();
             simDTO.setId(sim.getId());
             simDTO.setIccid(sim.getIccid().getIccidNumber());
             simDTO.setMsisdn(sim.getMsisdn().getMsisdnNumber());
-            simDTO.setImei(sim.getImei()==null?"":sim.getImei().getImeiNumber());
+            simDTO.setImei(sim.getImei() == null ? "" : sim.getImei().getImeiNumber());
             simDTO.setActivated(sim.isActivated());
             simDTO.setIssuedDateTime(sim.getIssuedDateTime().toString());
             simDTO.setConnectionType(sim.getSimType());
@@ -324,20 +334,18 @@ public class InventoryService {
     public Boolean replaceSim(ReservationDTO reservationDTO) {
         System.out.println(reservationDTO);
         Boolean flag = false;
-        Customer customer = getOrCreateCustomer(reservationDTO.getCustomerName());
-        for(SIM sim : customer.getSims()){
-            if(sim.getIccid()==null || sim.getMsisdn()==null){
+        Customer customer = getOrCreateCustomer(reservationDTO.getAadharUID(), reservationDTO.getCustomerName());
+        for (SIM sim : customer.getSims()) {
+            if (sim.getIccid() == null || sim.getMsisdn() == null) {
                 System.out.println(sim);
                 return false;
-            }
-            else if(sim.getMsisdn().getMsisdnNumber().equals(reservationDTO.getReservingNumber()) 
-            && sim.getIccid().getProvider().equals(reservationDTO.getProvider())
-            && sim.getSimType().equals(reservationDTO.getConnectionType())){
+            } else if (sim.getMsisdn().getMsisdnNumber().equals(reservationDTO.getReservingNumber())
+                    && sim.getIccid().getProvider().equals(reservationDTO.getProvider())
+                    && sim.getSimType().equals(reservationDTO.getConnectionType())) {
                 String newIccid = RandomICCID.generate(reservationDTO.getProvider());
                 sim.getIccid().setIccidNumber(newIccid);
                 flag = true;
-            }
-            else{
+            } else {
             }
         }
         customerRepository.save(customer);
@@ -347,10 +355,9 @@ public class InventoryService {
     public List<SIM> getInactiveSims() {
         List<Customer> customers = customerRepository.findAll();
         List<SIM> inactivesims = new ArrayList<>();
-        for(Customer customer : customers){
-            for(SIM sim : customer.getSims()){
-                if(!sim.isActivated())
-                {
+        for (Customer customer : customers) {
+            for (SIM sim : customer.getSims()) {
+                if (!sim.isActivated()) {
                     inactivesims.add(sim);
                 }
             }

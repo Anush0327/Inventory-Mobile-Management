@@ -1,0 +1,75 @@
+.box {
+    height: 242px;
+    position: relative;
+    width: 201px;
+
+     .group {
+        height: 242px;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 201px;
+
+        .overlap-group {
+            height: 121px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 200px;
+            .ellipse {
+                background-color: #f90606;
+                border-radius: 67.5px/60.5px;
+                height: 121px;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 135px;
+              }
+              .rectangle {
+                height: 121px;
+                left: 68px;
+                position: absolute;
+                top: 0;
+                width: 132px;
+              }
+          }
+
+        .overlap {
+            height: 121px;
+            left: 68px;
+            position: absolute;
+            top: 121px;
+            width: 133px;
+
+            .img {
+                height: 121px;
+                left: 1px;
+                position: absolute;
+                top: 0;
+                width: 132px;
+              }
+            .subtract {
+                height: 121px;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 132px;
+              }
+          }
+      }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  

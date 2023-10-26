@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Entity
@@ -20,6 +21,9 @@ public class Customer {
     private int id;
 
     private String name;
+
+    @Pattern(regexp = "^[0-9]{12}",message = "UID must be 12 digits long")
+    private String aadharUID;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<SIM> sims;

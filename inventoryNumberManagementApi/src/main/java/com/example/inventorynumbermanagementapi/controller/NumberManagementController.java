@@ -41,8 +41,8 @@ public class NumberManagementController {
     }
 
     @GetMapping("/reservations")
-    public ResponseEntity<List<Reservation>> getAllReservationsOf(@RequestParam String customerName){
-        List<Reservation> reservations = inventoryService.getAllReservationsOf(customerName);
+    public ResponseEntity<List<Reservation>> getAllReservationsOf(@RequestParam String aadharUID){
+        List<Reservation> reservations = inventoryService.getAllReservationsOf(aadharUID);
         if(reservations!=null){
             return ResponseEntity.ok(reservations);
         }
