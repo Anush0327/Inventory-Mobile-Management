@@ -18,19 +18,17 @@ https://github.com/Anush0327/Inventory-Number-Management
 |3|Functional Requirements|
 ||<p>3\.1. Use Case 1</p><p>3\.2. Use Case 2</p>|
 |4|Non-Functional Requirements|
-||<p>4\.1. Performance Requirements</p><p>4\.2. Security Requirements</p><p>4\.3. User Interface Requirements</p><p>4\.4. Database Requirements</p><p>4\.5. Compatibility Requirements</p>|
+||<p>4\.1. Performance Requirements</p><p>4\.2. User Interface Requirements</p><p>4\.3. Database Requirements</p><p>4\.4. Compatibility Requirements</p>|
 |5|User Interface Design|
 ||<p>5\.1. Wireframes</p><p>5\.2. Mockups</p>|
 |6|Data Model|
 ||<p>6\.1. Entity-Relationship Diagram</p><p>6\.2. Database Schema</p><p></p>|
 |7|API Specification|
 ||<p>7\.1. API Endpoints</p><p>7\.2. Data Formats</p><p>7\.3. Authentication and Authorization</p>|
-|8|Security|
-||<p>8\.1. Authentication</p><p>8\.2. Authorization</p><p>8\.3. Data Encryption</p>|
-|9|Testing|
-||<p>9\.1. Unit Testing</p><p>9\.2. Integration Testing</p><p>9\.3. User Acceptance Testing</p>|
-|10|Deployment|
-||<p>10\.1. Deployment Architecture</p><p>10\.2. Deployment Instruction</p>|
+|8|Testing|
+||<p>8\.1. Unit Testing</p><p>8\.2. Integration Testing</p><p>8\.3. User Acceptance Testing</p>|
+|9|Deployment|
+||<p>9\.1. Deployment Architecture</p><p>9\.2. Deployment Instruction</p>|
 
 
 
@@ -107,41 +105,20 @@ The system encompasses several essential functionalities, including:
 The system's performance expectations include:
 
 Responsiveness: The system should exhibit responsiveness, ensuring that actions such as number reservation are carried out with minimal latency.
-
-**4.2 Security**
-
-Security is of paramount importance in the Wireless Inventory Number Management system. It encompasses several measures to safeguard sensitive data and control access to the system effectively.
-
-**Authentication and Authorization**
-
-Authentication and authorization mechanisms will be implemented to ensure that users have controlled access to the system. This is achieved through the use of JSON Web Tokens (JWT), which provide a secure and efficient means of user authentication and authorization.
-
-**Authentication:**
-
-- JWT-Based Authentication: The system will employ JWT-based authentication to verify the identity of users during login. Upon successful authentication, the system will issue a JWT token to the user.
-- User Credentials: Users will be required to provide valid credentials, typically a email and password, during login.
-- Token Expiry: JWT tokens will have a predefined expiry time, after which they will need to be renewed or reacquired.
-
-**Authorization:**
-
-- Role-Based Access Control (RBAC): The system will adopt Role-Based Access Control, where users are assigned specific roles (e.g., admin, regular user). These roles determine the level of access a user has within the system.
-- Authorization Claims: JWT tokens will contain claims or attributes specifying a user's role and permissions. The system will use these claims to enforce access control policies.
-- Resource Protection: Authorization rules will be in place to protect sensitive resources, ensuring that users can only access data and perform actions for which they have the appropriate permissions.
-
-**4.3 User Interface**
+**4.2 User Interface**
 
 The user interface design will adhere to the following criteria:
 
 - User-Friendly Design: The user interface will be intuitively designed for ease of use.
 - Responsiveness: The interface will be responsive to various screen sizes and devices, ensuring a consistent user experience.
 
-**4.4 Database**
+**4.3 Database**
 
 The system's database requirements encompass the following:
 
 Database Technology: The choice of database technology (e.g., MySQL) will be made with data security and efficiency in mind.
 
-**4.5 Compatibility**
+**4.4 Compatibility**
 
 The system will ensure compatibility as follows:
 
@@ -167,17 +144,7 @@ The system will define RESTful API endpoints with specifications covering:
 - Association: APIs will enable the association of ICCID with corresponding MSISDN and IMEI.
 - Availability Checks: Endpoints for checking the availability of numbers will also be included.
 
-### **8. Security**
-
-Security measures will be implemented, including:
-
-Authentication: Users will be required to authenticate themselves before accessing the system.
-
-Authorization: Authorization mechanisms will control user access based on defined roles and permissions.
-
-Data Encryption: Sensitive data transmission will be encrypted to protect against unauthorized access.
-
-### **9. Testing**
+### **8. Testing**
 
 A comprehensive testing strategy will be employed, encompassing the following:
 
@@ -185,20 +152,12 @@ A comprehensive testing strategy will be employed, encompassing the following:
 - Integration Testing: Verification of interactions between different system components.
 - User Acceptance Testing: Evaluation of the system's compliance with user requirements and expectations.
 
-### **10. Deployment**
+### **9. Deployment**
 
 Deployment of the system will involve the following:
 
 - Deployment Architecture: The architecture for deploying the backend and frontend in a production environment will be determined.
 - Deployment Instructions: Detailed instructions will be provided to guide the deployment process, ensuring successful implementation.
-
-### **Data Encryption**
-
-To ensure the confidentiality of sensitive data transmitted between the frontend and backend components, the system will employ data encryption.
-
-- Secure Communication: All data transferred between the frontend and backend will be transmitted over secure, encrypted connections using HTTPS (SSL/TLS) protocols.
-- End-to-End Encryption: Sensitive information, such as user credentials and authentication tokens, will be encrypted before transmission, making it nearly impossible for unauthorized parties to intercept or decipher the data in transit.
-- These security measures, including JWT-based authentication and data encryption, will be implemented rigorously to safeguard user data and protect the integrity and security of the Wireless Inventory Number Management system.
 
 
 
