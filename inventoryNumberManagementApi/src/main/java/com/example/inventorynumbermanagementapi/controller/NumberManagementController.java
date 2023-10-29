@@ -63,9 +63,10 @@ public class NumberManagementController {
     @GetMapping("/allprepaidsims")
     public ResponseEntity<List<SimDTO>> getAllPrepaidSims(){
         List<SIM> sims = inventoryService.getAllPrepaidSims();
-        List<SimDTO> simDTOs = inventoryService.convertToDTO(sims);
-        if(sims!=null)
+        if(sims!=null){
+            List<SimDTO> simDTOs = inventoryService.convertToDTO(sims);
             return ResponseEntity.ok(simDTOs);
+        }
         else
             return ResponseEntity.ok(Collections.emptyList());
     }
@@ -74,9 +75,10 @@ public class NumberManagementController {
     @GetMapping("/allpostpaidsims")
     public ResponseEntity<List<SimDTO>> getAllPostpaidSims(){
         List<SIM> sims = inventoryService.getAllPostpaidSims();
-        List<SimDTO> simDTOs = inventoryService.convertToDTO(sims);
-        if(sims!=null)
+        if(sims!=null){
+            List<SimDTO> simDTOs = inventoryService.convertToDTO(sims);
             return ResponseEntity.ok(simDTOs);
+        }
         else
             return ResponseEntity.ok(Collections.emptyList());
     }

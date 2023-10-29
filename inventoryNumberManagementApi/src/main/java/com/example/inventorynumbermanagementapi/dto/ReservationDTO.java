@@ -16,6 +16,4 @@ public class ReservationDTO {
 
     private String connectionType;
 
-    private int numberOfDaysToReserve;
-
 }

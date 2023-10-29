@@ -14,7 +14,7 @@ public class ICCID {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Pattern(regexp = "[0-9]{19}[0-9xX]$",message = "The ICCID number must contain 20 digits")
+    @Pattern(regexp = "[0-9]{18}[0-9xX]$",message = "The ICCID number must contain 19 digits")
     private String iccidNumber;
 
     private String provider;

@@ -11,6 +11,7 @@ public class RandomICCID {
         String ICCID = "";
         String majorIndustryIdentifier = "89";
         String issuerIdentifier = "";
+        String countrycode = "91";
         switch (provider.toLowerCase()) {
             case "airtel":
                 issuerIdentifier = "01";
@@ -21,19 +22,19 @@ public class RandomICCID {
             case "vi":
                 issuerIdentifier = "03";
                 break;
-            case "aircel":
+            case "bsnl":
                 issuerIdentifier = "04";
                 break;
             default:
                 throw new IllegalArgumentException("Provider not supported");
         }
         String individualAccountIdentifier = "";
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 12; i++) {
             individualAccountIdentifier += DIGITS.charAt(r.nextInt(DIGITS.length()));
         }
         String partialICCID = majorIndustryIdentifier + issuerIdentifier + individualAccountIdentifier;
         char checkDigit = calculateLuhnDigit(partialICCID);
-        ICCID = majorIndustryIdentifier + issuerIdentifier + individualAccountIdentifier + checkDigit + "X";
+        ICCID = majorIndustryIdentifier + countrycode + issuerIdentifier + individualAccountIdentifier + checkDigit;
         return ICCID;
     }
 

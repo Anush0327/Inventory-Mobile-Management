@@ -22,7 +22,7 @@ public class Customer {
 
     private String name;
 
-    @Pattern(regexp = "^[0-9]{12}",message = "UID must be 12 digits long")
+    @Pattern(regexp = "^[0-9]{12}$",message = "UID must be 12 digits long")
     private String aadharUID;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)

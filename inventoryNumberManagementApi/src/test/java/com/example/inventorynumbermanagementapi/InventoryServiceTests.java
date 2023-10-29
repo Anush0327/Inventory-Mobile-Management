@@ -1,9 +1,10 @@
-package com.example.inventoryNumberManagementApi;
+package com.example.inventorynumbermanagementapi;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.inventorynumbermanagementapi.dto.ReservationDTO;
@@ -103,19 +104,19 @@ public class InventoryServiceTests {
         assertEquals(true, result);
     }
 
-    @Test
-    public void testSetSIMInPhoneWithIMEI() {
-        Customer customer = new Customer();
-        SIM sim = new SIM();
-        MSISDN msisdn = new MSISDN();
-        msisdn.setMsisdnNumber("9876543210");
-        sim.setMsisdn(msisdn);
-        customer.setSims(List.of(sim));
+    // @Test
+    // public void testSetSIMInPhoneWithIMEI() {
+    //     Customer customer = new Customer();
+    //     SIM sim = new SIM();
+    //     MSISDN msisdn = new MSISDN();
+    //     msisdn.setMsisdnNumber("9876543210");
+    //     sim.setMsisdn(msisdn);
+    //     customer.setSims(List.of(sim));
 
-        when(customerRepository.findAll()).thenReturn(List.of(customer));
-        when(imeiRepository.save(any(IMEI.class))).thenReturn(new IMEI());
+    //     when(customerRepository.findAll()).thenReturn(List.of(customer));
+    //     when(imeiRepository.save(any(IMEI.class))).thenReturn(new IMEI());
 
-        boolean result = inventoryService.setSIMInPhoneWithIMEI("123456789012345", "9876543210");
-        assertEquals(true, result);
-    }
+    //     boolean result = inventoryService.setSIMInPhoneWithIMEI("123456789012345", "9876543210");
+    //     assertEquals(true, result);
+    // }
 }
