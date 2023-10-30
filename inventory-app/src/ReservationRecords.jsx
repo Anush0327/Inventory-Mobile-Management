@@ -52,7 +52,6 @@ export default function ReservationRecords() {
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>MSISDN Number</th>
                         <th>provider</th>
                         <th>Reservation Date</th>
@@ -62,7 +61,6 @@ export default function ReservationRecords() {
                 <tbody>
                     {filteredSims.map((sim) => (
                         <tr key={sim.id}>
-                            <td>{sim.id}</td>
                             <td>{sim.phoneNumber}</td>
                             <td>{<Provider provider={ {type:sim.provider}} />}</td>
                             <td>{formatDateTime(sim.reservationDateTime)}</td>

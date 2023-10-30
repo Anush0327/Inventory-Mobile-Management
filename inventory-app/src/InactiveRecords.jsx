@@ -51,7 +51,6 @@ export default function InactiveRecords() {
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>MSISDN Number</th>
                         <th>Reservation Date</th>
                         <th>ConnectionType</th>
@@ -60,7 +59,6 @@ export default function InactiveRecords() {
                 <tbody>
                     {filteredSims.map((sim) => (
                         <tr key={sim.id}>
-                            <td>{sim.id}</td>
                             <td>{sim.msisdn}</td>
                             <td>{formatDateTime(sim.issuedDateTime)}</td>
                             <td>{sim.connectionType}</td>

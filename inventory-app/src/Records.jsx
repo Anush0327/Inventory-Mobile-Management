@@ -63,18 +63,16 @@ export default function Records(props) {
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>MSISDN Number</th>
                         <th>ICCID</th>
                         <th>IMEI Number</th>
-                        <th>Reservation Date</th>
+                        <th>Registration Date</th>
                         <th>Activity Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredSims.map((sim) => (
                         <tr key={sim.id}>
-                            <td>{sim.id}</td>
                             <td>{sim.msisdn}</td>
                             <td>{sim.iccid}</td>
                             <td>{sim.imei ?? "N/A"}</td>
