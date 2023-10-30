@@ -4,6 +4,7 @@
 
 https://github.com/Anush0327/Inventory-Number-Management
 
+[ER Diagram](#er-diagram)
 
 (Software Requirements Specification)
 
@@ -77,9 +78,9 @@ The system follows a client-server architecture with a RESTful API, facilitating
 
 .
 
-**2.3 ER Diagram**
+**2.3 Data Flow**
 
-![ER diagram of the App](inventoryNumber.png)
+
 
 The system's data flow begins with user input through the frontend. This data is then processed in the backend, where it undergoes various operations. Subsequently, the processed results are relayed back to the frontend for display.
 
@@ -200,6 +201,9 @@ Do we have user personas or profiles to consider?
 
 1. What security measures need to be in place to protect user data?
 2. Are there privacy regulations to comply with?
+
+## ER Diagram
+![ER diagram of the App](inventoryNumber.png)
 
 ## FrontEnd Routes
 
