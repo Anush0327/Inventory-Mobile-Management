@@ -48,7 +48,7 @@ public class InventoryServiceTests {
     private IMEIRepository imeiRepository;
 
     @Test
-    public void testReservationInitiation() {
+    void testReservationInitiation() {
         ReservationDTO reservationDTO = new ReservationDTO();
         reservationDTO.setCustomerName("TestCustomer");
         reservationDTO.setProvider("TestProvider");
@@ -72,7 +72,7 @@ public class InventoryServiceTests {
     }
 
     @Test
-    public void testActivate() {
+    void testActivate() {
         Customer customer = new Customer();
         customer.setName("Anush");
         customer.setSims(new ArrayList<>());
@@ -90,7 +90,7 @@ public class InventoryServiceTests {
 
 
     @Test
-    public void testIMEIAlreadyExist() {
+    void testIMEIAlreadyExist() {
         Customer customer = new Customer();
         SIM sim = new SIM();
         IMEI imei = new IMEI();
@@ -103,20 +103,4 @@ public class InventoryServiceTests {
         boolean result = inventoryService.imeiAlreadyExist("123456789012345");
         assertEquals(true, result);
     }
-
-    // @Test
-    // public void testSetSIMInPhoneWithIMEI() {
-    //     Customer customer = new Customer();
-    //     SIM sim = new SIM();
-    //     MSISDN msisdn = new MSISDN();
-    //     msisdn.setMsisdnNumber("9876543210");
-    //     sim.setMsisdn(msisdn);
-    //     customer.setSims(List.of(sim));
-
-    //     when(customerRepository.findAll()).thenReturn(List.of(customer));
-    //     when(imeiRepository.save(any(IMEI.class))).thenReturn(new IMEI());
-
-    //     boolean result = inventoryService.setSIMInPhoneWithIMEI("123456789012345", "9876543210");
-    //     assertEquals(true, result);
-    // }
 }

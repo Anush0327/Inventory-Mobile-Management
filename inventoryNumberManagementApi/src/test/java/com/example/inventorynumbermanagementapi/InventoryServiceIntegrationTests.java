@@ -40,14 +40,11 @@ public class InventoryServiceIntegrationTests {
     private MSISDNRepository msisdnRepository;
 
     @Autowired
-    private IMEIRepository imeiRepository;
-
-    @Autowired
     private ICCIDRepository iccidRepository;
 
 
     @Test
-    public void testIntegrationReservationInitiation() {
+    void testIntegrationReservationInitiation() {
         ReservationDTO reservationDTO = new ReservationDTO();
         reservationDTO.setCustomerName("TestCustomerB");
         reservationDTO.setProvider("TestProvider");
@@ -77,7 +74,7 @@ public class InventoryServiceIntegrationTests {
     }
 
     @Test
-    public void testIntegrationActivate() {
+    void testIntegrationActivate() {
         Customer customer = new Customer();
         customer.setName("Anush");
         customer.setSims(new ArrayList<>());
@@ -102,21 +99,4 @@ public class InventoryServiceIntegrationTests {
         assertEquals(true, result);
         customerRepository.delete(customer);
     }
-
-    // @Test
-    // public void testIntegrationSetSIMInPhoneWithIMEI() {
-    //     Customer customer = new Customer();
-    //     SIM sim = new SIM();
-    //     MSISDN msisdn = new MSISDN();
-    //     msisdn.setMsisdnNumber("9876543210");
-    //     sim.setMsisdn(msisdn);
-    //     msisdnRepository.save(msisdn);
-    //     customer.setSims(List.of(sim));
-
-    //     customerRepository.save(customer);
-        
-
-    //     boolean result = inventoryService.setSIMInPhoneWithIMEI("123456789012345", "9876543210");
-    //     assertEquals(true, result);
-    // }
 }

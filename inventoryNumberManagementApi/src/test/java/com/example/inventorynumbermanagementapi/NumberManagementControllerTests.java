@@ -34,7 +34,7 @@ public class NumberManagementControllerTests {
     private InventoryService inventoryService;
 
     @Test
-    public void testFunctionalNumberReservation() throws Exception {
+    void testFunctionalNumberReservation() throws Exception {
         ReservationDTO reservationDTO = new ReservationDTO();
         reservationDTO.setCustomerName("TestCustomer");
         reservationDTO.setProvider("TestProvider");
@@ -50,7 +50,7 @@ public class NumberManagementControllerTests {
     }
 
     @Test
-    public void testFunctionalGetAllSims() throws Exception {
+    void testFunctionalGetAllSims() throws Exception {
         SIM sim = new SIM();
         sim.setSimType("prepaid");
         List<SIM> sims = Collections.singletonList(sim);
@@ -65,7 +65,7 @@ public class NumberManagementControllerTests {
     }
 
     @Test
-    public void testFunctionalInsertSimInto() throws Exception {
+    void testFunctionalInsertSimInto() throws Exception {
         InsertSimDTO insertSimDTO = new InsertSimDTO();
         insertSimDTO.setImei("123456789012345");
         insertSimDTO.setMsisdn("9876543210");

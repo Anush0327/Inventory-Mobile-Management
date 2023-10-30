@@ -8,7 +8,6 @@ import ReplaceSim from "./ReplaceSim";
 import InactiveRecords from "./InactiveRecords";
 import ReservationRecords from "./ReservationRecords";
 import { useEffect, useRef, useState } from "react";
-import Swagger from "./Swagger";
 
 
 export default function NavBar() {
@@ -77,7 +76,7 @@ export default function NavBar() {
                     <ul className="nav-list">
                         <li>
                             <Link to="/" className="nav-link">
-                                <img src="logo.svg" alt="kuchbhi" />
+                                <img height={40} width={40} src="WINM.png" alt="kuchbhi" />
                             </Link>
                         </li>
                         <li>
@@ -201,7 +200,6 @@ export default function NavBar() {
                         <Route path="replace-sim-postpaid" element={<ReplaceSim connection={{ type: 'postpaid' }} />} />
                         <Route path="reserved-numbers" element={<ReservationRecords />} />
                         <Route path="insert-sim" element={<ImeiManager />} />
-                        <Route path="swagger" element={<Swagger />} />
                     </Routes>
                 </div>
                 {/* <div className="image-container">

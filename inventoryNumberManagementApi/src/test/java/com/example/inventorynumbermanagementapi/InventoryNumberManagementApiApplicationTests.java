@@ -197,11 +197,6 @@ class InventoryNumberManagementApiApplicationTests {
     }
 
     @Test
-    void testReplaceSim() throws Exception{
-        
-    }
-
-    @Test
     void testInsertSimInto() throws Exception {
         InsertSimDTO insertSimDTO = new InsertSimDTO();
         insertSimDTO.setImei("123456789012345");

@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
 import './ReservationRecords.scss'; // Import the CSS file
-import Airtel from "./Airtel";
-import Jio from "./Jio";
-import VI from "./VI";
+import Provider from "./Provider";
 
 export default function ReservationRecords() {
     const [sims, setSims] = useState([]);
+    const [searchText, setSearchText] = useState('');
 
     const formatDateTime = (isoDateTime) => {
         const date = new Date(isoDateTime);
         return date.toLocaleString(); // You can customize the format here
     };
+    const filterSimsByMSISDN = (sims, searchText) => {
+        const sanitizedSearchText = searchText.trim().toLowerCase();
+        if (sanitizedSearchText === '') {
+            return sims; // Return all SIMs if the search text is empty
+        }
+    
+        return sims.filter((sim) => sim.phoneNumber.toLowerCase().includes(sanitizedSearchText));
+    };
+    const filteredSims = filterSimsByMSISDN(sims, searchText);
     // Function to fetch SIMs from the API
     const fetchSims = async () => {
         try {
@@ -35,6 +43,12 @@ export default function ReservationRecords() {
         <div className="record-table">
             <h3>Reserved Numbers</h3>
             <hr/>
+            <input
+            type="text"
+            placeholder="Search by MSISDN"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            />
             <table>
                 <thead>
                     <tr>
@@ -46,11 +60,11 @@ export default function ReservationRecords() {
                     </tr>
                 </thead>
                 <tbody>
-                    {sims.map((sim) => (
+                    {filteredSims.map((sim) => (
                         <tr key={sim.id}>
                             <td>{sim.id}</td>
                             <td>{sim.phoneNumber}</td>
-                            <td>{sim.provider==="AIRTEL"? <Airtel/> :sim.provider==="JIO"?<Jio/>:<VI/>}</td>
+                            <td>{<Provider provider={ {type:sim.provider}} />}</td>
                             <td>{formatDateTime(sim.reservationDateTime)}</td>
                             <td>{sim.connectionType}</td>
                         </tr>

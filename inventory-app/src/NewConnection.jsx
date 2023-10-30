@@ -183,10 +183,13 @@ export default function NewConnection(props) {
               className="form-input"
               required
             />
+            <label className="form-label" htmlFor="select-Number">
+              Reserved Numbers
             <select onChange={changereservedphonenumber} onClick={changereservedphonenumber} value={phoneNumber}>
               {reservation.map((reser) => (
                 <option key={reser.id} >{reser.phoneNumber}</option>))}
             </select>
+            </label>
             <label htmlFor="provider" className="form-label radio-label">
               Networks
             </label>
