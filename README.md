@@ -201,5 +201,16 @@ Do we have user personas or profiles to consider?
 1. What security measures need to be in place to protect user data?
 2. Are there privacy regulations to comply with?
 
+## FrontEnd Routes
 
+Routes and Components
+
+- `/home`: Home component.
+- `/prepaid`, `/postpaid`: Components for Buying a new SIM or reserving a new Number.
+- `/insert-sim`: IMEI manager component.
+- `/reserved-numbers`: Reserved-SIMs records component.
+- `/inactive-numbers`: Inactive-SIMs records component.
+- `/change-provider-prepaid`, `/change-provider-postpaid`: Porting network components based on the connection type.
+- `/prepaid-records`, `/postpaid-records`: records components based on the connection type.
+- `/replace-sim-prepaid`, `/replace-sim-postpaid`: Replace SIM components based on the connection type.
 
