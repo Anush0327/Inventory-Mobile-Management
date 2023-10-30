@@ -4,6 +4,7 @@
 
 https://github.com/Anush0327/Inventory-Number-Management
 
+[ER Diagram](#er-diagram)
 
 (Software Requirements Specification)
 
@@ -77,9 +78,9 @@ The system follows a client-server architecture with a RESTful API, facilitating
 
 .
 
-**2.3 ER Diagram**
+**2.3 Data Flow**
 
-![ER diagram of the App](inventoryNumber.png)
+
 
 The system's data flow begins with user input through the frontend. This data is then processed in the backend, where it undergoes various operations. Subsequently, the processed results are relayed back to the frontend for display.
 
@@ -201,6 +202,9 @@ Do we have user personas or profiles to consider?
 1. What security measures need to be in place to protect user data?
 2. Are there privacy regulations to comply with?
 
+## ER Diagram
+![ER diagram of the App](inventoryNumber.png)
+
 ## FrontEnd Routes
 
 Routes and Components
@@ -213,4 +217,280 @@ Routes and Components
 - `/change-provider-prepaid`, `/change-provider-postpaid`: Porting network components based on the connection type.
 - `/prepaid-records`, `/postpaid-records`: records components based on the connection type.
 - `/replace-sim-prepaid`, `/replace-sim-postpaid`: Replace SIM components based on the connection type.
+
+# OpenAPI definition
+
+**Version:** v0
+
+## Servers
+- Generated server URL: [http://localhost:8080](http://localhost:8080)
+
+## Paths
+
+### POST /api/number/reserve
+- **Operation ID:** reserveTheNumber
+- **Request Body:**
+  - Content Type: application/json
+  - Schema:
+    ```json
+    {
+      "customerName": "string",
+      "aadharUID": "string",
+      "provider": "string",
+      "reservingNumber": "string",
+      "location": "string",
+      "connectionType": "string"
+    }
+    ```
+- **Responses:**
+  - 200 OK: boolean
+
+### POST /api/number/replacesim
+- **Operation ID:** replaceSim
+- **Request Body:**
+  - Content Type: application/json
+  - Schema:
+    ```json
+    {
+      "customerName": "string",
+      "aadharUID": "string",
+      "provider": "string",
+      "reservingNumber": "string",
+      "location": "string",
+      "connectionType": "string"
+    }
+    ```
+- **Responses:**
+  - 200 OK: boolean
+
+### POST /api/number/newconnection
+- **Operation ID:** numberReservation
+- **Request Body:**
+  - Content Type: application/json
+  - Schema:
+    ```json
+    {
+      "customerName": "string",
+      "aadharUID": "string",
+      "provider": "string",
+      "reservingNumber": "string",
+      "location": "string",
+      "connectionType": "string"
+    }
+    ```
+- **Responses:**
+  - 200 OK: boolean
+
+### POST /api/number/insertSim
+- **Operation ID:** insertSimInto
+- **Request Body:**
+  - Content Type: application/json
+  - Schema:
+    ```json
+    {
+      "imei": "string",
+      "msisdn": "string"
+    }
+    ```
+- **Responses:**
+  - 200 OK: boolean
+
+### POST /api/number/changeProvider
+- **Operation ID:** changeProvider
+- **Request Body:**
+  - Content Type: application/json
+  - Schema:
+    ```json
+    {
+      "customerName": "string",
+      "aadharUID": "string",
+      "provider": "string",
+      "reservingNumber": "string",
+      "location": "string",
+      "connectionType": "string"
+    }
+    ```
+- **Responses:**
+  - 200 OK: boolean
+
+### GET /api/number/reservations
+- **Operation ID:** getAllReservationsOf
+- **Parameters:**
+  - Query Parameter: aadharUID (required)
+- **Responses:**
+  - 200 OK:
+    - Schema:
+      ```json
+      [
+        {
+          "id": "integer",
+          "phoneNumber": "string",
+          "provider": "string",
+          "connectionType": "string",
+          "customer": {
+            "id": "integer",
+            "name": "string",
+            "aadharUID": "string",
+            "sims": [
+              {
+                "id": "integer",
+                "msisdn": {
+                  "id": "integer",
+                  "msisdnNumber": "string"
+                },
+                "imei": {
+                  "id": "integer",
+                  "imeiNumber": "string"
+                },
+                "iccid": {
+                  "id": "integer",
+                  "iccidNumber": "string",
+                  "provider": "string"
+                },
+                "simType": "string",
+                "issuedDateTime": "string",
+                "activated": "boolean"
+              }
+            ]
+          },
+          "reservationDateTime": "string"
+        }
+      ]
+      ```
+
+### GET /api/number/inactivesims
+- **Operation ID:** getInactiveSims
+- **Responses:**
+  - 200 OK:
+    - Schema:
+      ```json
+      [
+        {
+          "id": "integer",
+          "msisdn": "string",
+          "iccid": "string",
+          "imei": "string",
+          "issuedDateTime": "string",
+          "customerName": "string",
+          "connectionType": "string",
+          "activated": "boolean"
+        }
+      ]
+      ```
+
+### GET /api/number/allreservations
+- **Operation ID:** getAllReservations
+- **Responses:**
+  - 200 OK:
+    - Schema:
+      ```json
+      [
+        {
+          "id": "integer",
+          "phoneNumber": "string",
+          "provider": "string",
+          "connectionType": "string",
+          "customer": {
+            "id": "integer",
+            "name": "string",
+            "aadharUID": "string",
+            "sims": [
+              {
+                "id": "integer",
+                "msisdn": {
+                  "id": "integer",
+                  "msisdnNumber": "string"
+                },
+                "imei": {
+                  "id": "integer",
+                  "imeiNumber": "string"
+                },
+                "iccid": {
+                  "id": "integer",
+                  "iccidNumber": "string",
+                  "provider": "string"
+                },
+                "simType": "string",
+                "issuedDateTime": "string",
+                "activated": "boolean"
+              }
+            ]
+          },
+          "reservationDateTime": "string"
+        }
+      ]
+      ```
+
+### GET /api/number/allprepaidsims
+- **Operation ID:** getAllPrepaidSims
+- **Responses:**
+  - 200 OK:
+    - Schema:
+      ```json
+      [
+        {
+          "id": "integer",
+          "msisdn": "string",
+          "iccid": "string",
+          "imei": "string",
+          "issuedDateTime": "string",
+          "customerName": "string",
+          "connectionType": "string",
+          "activated": "boolean"
+        }
+      ]
+      ```
+
+### GET /api/number/allpostpaidsims
+- **Operation ID:** getAllPostpaidSims
+- **Responses:**
+  - 200 OK:
+    - Schema:
+      ```json
+      [
+        {
+          "id": "integer",
+          "msisdn": "string",
+          "iccid": "string",
+          "imei": "string",
+          "issuedDateTime": "string",
+          "customerName": "string",
+          "connectionType": "string",
+          "activated": "boolean"
+        }
+      ]
+      ```
+
+## Components
+
+### Schemas
+
+- **ReservationDTO:**
+  ```json
+  {
+    "customerName": "string",
+    "aadharUID": "string",
+    "provider": "string",
+    "reservingNumber": "string",
+    "location": "string",
+    "connectionType": "string"
+  }
+- **InsertSimDTO:**
+  ```json
+  {
+  "imei": "string",
+  "msisdn": "string"
+  }
+- **SimDTO:**
+  ```json
+  {
+  "id": "integer",
+  "msisdn": "string",
+  "iccid": "string",
+  "imei": "string",
+  "issuedDateTime": "string",
+  "customerName": "string",
+  "connectionType": "string",
+  "activated": "boolean"
+ }
 
